@@ -11,6 +11,8 @@ import frc.robot.subsystems.ExampleSubsystem;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 import edu.wpi.first.wpilibj2.command.button.Trigger;
+//needed i think
+import frc.robot.commands.ElevatorCommands.ElevatorManualControl;
 
 /**
  * This class is where the bulk of the robot should be declared. Since Command-based is a
@@ -28,7 +30,7 @@ private final manipulatorSubsystem manipulatorSubsystem = new manipulatorSubsyst
 
   // Replace with CommandPS4Controller or CommandJoystick if needed
   // TODO: initialize controller (CommandXboxController) 
-private final CommandXboxController controller = new CommandXboxController(OperatorConstants.kDriverControllerPort);
+private final CommandXboxController m_driverController = new CommandXboxController(OperatorConstants.kDriverControllerPort);
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
   public RobotContainer() {
     // Configure the trigger bindings
@@ -54,6 +56,17 @@ private final CommandXboxController controller = new CommandXboxController(Opera
     m_driverController.b().whileTrue(m_exampleSubsystem.exampleMethodCommand());
     
     // TODO: configure bindings for the CommandXboxController. Button bindings are up to you, just ensure that they are valid. Bindings should include Arcade Drive, changing position of elevator, and shooting coral 
+    m_driverController.leftBumper()
+    //no sé si ts is right
+    .whileTrue(driveSubsystem.arcadeDrive(driveSpeed, driveRotation));
+    //moves elevator up with cool arrow function(i think)
+    m_driverController.y()
+    .whileTrue(new ElevatorManualControl(elevator, () -> 0.2));
+    //moves elevator down with cool arrow function(i think)
+    m_driverController.a()
+    .whileTrue(new ElevatorManualControl(elevator, () -> -0.2));
+//shoots the coral at my computer because this code is probably wrong
+    m_driverController.x().whileTrue(manipulatorSubsystem.forward(ManipulatorConstants.shootSpeed));
   }
 
   /**
