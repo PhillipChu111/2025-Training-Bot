@@ -9,6 +9,7 @@ import frc.robot.commands.Autos;
 import frc.robot.commands.ExampleCommand;
 import frc.robot.subsystems.ExampleSubsystem;
 import edu.wpi.first.wpilibj2.command.Command;
+import edu.wpi.first.wpilibj2.command.RunCommand;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 import edu.wpi.first.wpilibj2.command.button.Trigger;
 //needed i think
@@ -57,8 +58,9 @@ private final CommandXboxController m_driverController = new CommandXboxControll
     
     // TODO: configure bindings for the CommandXboxController. Button bindings are up to you, just ensure that they are valid. Bindings should include Arcade Drive, changing position of elevator, and shooting coral 
     m_driverController.leftBumper()
-    //no sé si ts is right
-    .whileTrue(driveSubsystem.arcadeDrive(driveSpeed, driveRotation));
+    //chatgpt said so
+    .whileTrue(new RunCommand(() -> 
+    driveSubsystem.arcadeDrive(OperatorConstants.driveSpeed, OperatorConstants.driveRotation), driveSubsystem));
     //moves elevator up with cool arrow function(i think)
     m_driverController.y()
     .whileTrue(new ElevatorManualControl(elevator, () -> 0.2));

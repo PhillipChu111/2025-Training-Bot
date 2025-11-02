@@ -8,6 +8,7 @@ import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import edu.wpi.first.wpilibj.drive.RobotDriveBase.MotorType;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
+import static frc.robot.Constants.*;  
 
 public class DriveSubsystem extends SubsystemBase {
   /** Creates a new ExampleSubsystem. */
@@ -38,7 +39,7 @@ public class DriveSubsystem extends SubsystemBase {
     // TODO: Assign the DifferentialDrive variable to a new DifferentialDrive object passing in the two front motors
     differentialDrive = new DifferentialDrive(leftFront, rightFront);
     // TODO: Pass in a max speed 
-    setMaxOutput(DriveContsants.maxSpeed);
+    setMaxOutput(maxSpeed);
   }
 
   // TODO: Create an arcadeDrive method, taking in speed and rotation 

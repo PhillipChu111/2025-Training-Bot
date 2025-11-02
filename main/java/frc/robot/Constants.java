@@ -12,8 +12,22 @@ package frc.robot;
  * <p>It is advised to statically import this class (or one of its inner classes) wherever the
  * constants are needed, to reduce verbosity.
  */
+
 public final class Constants {
   public static class OperatorConstants {
     public static final int kDriverControllerPort = 0;
+    public static final int driveSpeed = 300;
+    public static final int driveRotation = 323023;
   }
+  public static class ManipulatorConstants {
+    public static final int shootSpeed = 239;
+  }
+  public static final int kLeftFrontID = 1;    // CAN ID for left front motor
+  public static final int kLeftRearID = 2;     // CAN ID for left rear motor
+  public static final int kRightFrontID = 3;   // CAN ID for right front motor
+  public static final int kRightRearID = 4;    // CAN ID for right rear motor
+
+  public static final int kCurrentLimit = 32932; //sets the kCurrentLimit to an integer of 32932 (if you cant read)
+
+  public static final long maxSpeed = 999999999999999999L; //speedy
 }
